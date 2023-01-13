@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang = "en"> 
+
+<head>
+    <title> SEAOCC SNOW LOAD MAP</title>
+     
+    <!-- Insert links for Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+    
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    
+    <!--insert links for geocoder, this creates the ability to search on the Leaflet map -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    <!-- insert stylesheet -->
+<link rel="stylesheet" href="style.css"> 
+</head>
+   <div class = "div2"> 
+    <h1> SEAOCC SNOW LOAD MAP</h1>
+    </div> 
+    
+<body>
+    <div class="div1"> 
+    
+        <div id="mapid"></div> <!-- create the map -->
+       
+    </div>
+
+    
+    <div class = "div3"> 
+        <p> Lat: 38.5816, Lng: -121.4944</p>
+    </div>
+    <br>
+    <div class = "div5">
+        <span class = "greyRound">
+            Address
+        </span>
+        <input class="addressInput" type="text" placeholder="400 Squaw Valley Rd">
+        
+        
+        <button class = "blueButton">GO</button>
+            
+    </div>
+    
+    
+    <br>
+    
+    <div class = "div4"> 
+        <h3> 
+            <button>Print</button>
+        </h3>
+        
+        <h4>400 Squaw Valley Rd, Olympic Valley, CA 96146</h4>
+       
+        
+        <table>
+            <tr>
+                <th>Ground Snow</th>
+                <td> 217*** psf</td>
+            </tr>
+            <tr>
+                <th>Lattitude </th>
+                <td id="lattitude">38.5816 </td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td id="longitude">-121.4944</td>
+            </tr>
+            <tr>
+                <th> Elevation</th>
+                <td id="elevation"> 6200 ft</td>
+            </tr>
+            <tr>
+                <th>Jurisdiction</th>
+                <td id = "jurisdiction">Placer County Building Department</td>
+            </tr>
+        </table>
+        <p> <b>Local Jurisdiction Requirements:</b></p>
+        <p> (*) Roof live load reductions for any structural member based on Section 1607.12.2 are not permitted above 1,000 ft. elevation. Interpolation may be made at 100 ft. increments (any fraction of 100 ft. will be considered as 100 ft.). </p> 
+        <p> (**) Stress increase for load duration allowed by the NDS per Section 2306.1 required for snow loads shall be used above 1,600 ft. elevation. Interpolation may be made at 100 ft. increments (any fraction of 100 ft. will be considered as 100 ft.). </p>
+        <p> (***) No stress increase for load duration allowed by the NDS per Section 2306.1 may be used above 5,000’ elevation unless an architect, civil or structural engineer, licensed in California can show that the design load will not exceed two (2) months’ duration during the life of the structure. </p>
+    </div>
+    
+    
+    
+    
+<hr>
+    <p> Disclaimer: This website is available for  educational purposes only and does not guarantee the accuracy of any results shown.</p>
+    </body>
+    
+    
+<script>
+    var mymap = L.map('mapid').setView([38.5816, -121.4944], 6);
+        
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 10,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1Ijoic2Vpai1vZi1sZW9uIiwiYSI6ImNqeGxhMTlzdjAzenUzb3Bzemljc3ZheHYifQ._zl6XHJuvR-Zp3JMK1Xi1g'
+}).addTo(mymap);
+    
+    // document.getElementById("groundSnow").innerHTML = "test case";
+    
+    var conventionMarker = L.marker([39.202840,-120.213020]).addTo(mymap);
+    conventionMarker.bindPopup("<b>400 Squaw Creek Rd</b><br>Olympic Valley, CA 96146").openPopup();
+
+
+ function onEachFeature(feature, layer) {
+    //does this feature have a property named description?
+    if (feature.properties && feature.properties.description){
+        layer.bindPopup(feature.properties.description);
+    }
+}  
+    
+var layerStyle = {
+    "color": "#FF856B",
+    "opacity": 0.9
+};
+    
+var placerGeoJson = { 
+"type": "FeatureCollection",
+"name": "Placer - East",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Placer - East", "description": "<div class='popup'> <p> Placer County - East <\/p>\n<a = href = \"http:\/\/qcode.us\/codes\/placercounty\/view.php?topic=15-15_04-ii-15_04_290&frames=off\"> Click here for link to county snow load <\/a>\n<br>\n<br>\n\n<a = href = \"https:\/\/www.placer.ca.gov\/5296\/County-Index-Map\"> Click here for link to County Township Map <\/a>\n<br>\n<br>\n\n\n\n\n\n<br>\n\n<table border =\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"border: solid black\" border-collapse=\"collapse\" cellpadding = \"10\">\n<caption>Table A-16-D <\/caption>\n<tr>\n<td>Elevation (ft) <\/td> <td> Pg (psf) <\/td>\n<\/tr>\n\n<tr>\n<td> 5,001 - 5,500*** <\/td\/> <td> 130 <\/td>\n<\/tr>\n\n<tr>\n<td> 5,501 - 6,000 <\/td\/> <td>190<\/td>\n<\/tr>\n\n<tr>\n<td> 6,001 - 6,500 <\/td\/> <td> 245 <\/td>\n<\/tr>\n\n<tr>\n<td> 6,501 - 7,000 <\/td\/> <td> 300 <\/td>\n<\/tr>\n\n<tr>\n<td> 7,001 - 7,500 <\/td\/> <td>360<\/td>\n<\/tr>\n\n<tr>\n<td>7,501 - 8,000 <\/td\/> <td>400<\/td>\n<\/tr>\n\n<tr>\n<td> 8,001+ <\/td\/> <td>445<\/td>\n<\/tr>\n\n<\/table>\n\n </div>", "tessellate": 1 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -120.002673751917101, 39.067612159052373 ], [ -120.005849288177899, 39.316038157379651 ], [ -120.229906839830406, 39.316220662453588 ], [ -120.229922270136896, 39.183333509733373 ], [ -120.220618601331097, 39.18343215326734 ], [ -120.220364861226102, 39.168841447130177 ], [ -120.183385596210499, 39.168825472381258 ], [ -120.183425096295593, 39.038378235983579 ], [ -120.164873924054604, 39.038436321923108 ], [ -120.164742242852498, 39.045657399092562 ], [ -120.152759208195306, 39.045811234662182 ], [ -120.152825254397797, 39.060198191374369 ], [ -120.143545074545202, 39.060228792724629 ], [ -120.143587113692007, 39.067312739617641 ], [ -120.002673751917101, 39.067612159052373 ] ] ] } }
+]};
+    
+L.geoJSON(placerGeoJson, {onEachFeature: onEachFeature, style:layerStyle}).addTo(mymap);
+
+</script>    
+
+    
+
+    
+    
+    
+    

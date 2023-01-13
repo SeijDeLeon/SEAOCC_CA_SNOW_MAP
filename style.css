@@ -1,0 +1,159 @@
+table {
+    margin:auto;
+    border-collapse:collapse;
+    width:100%;
+    padding:0px;
+}
+
+tr:nth-child(odd) {
+    background: #F5F5F5;
+}
+
+th, td {
+    border: solid 0.5px;
+    border-color: lightgrey;
+    padding:5px;
+    height:10px;
+    text-align:center;
+    
+}
+.div1 { 
+    margin:auto;
+    max-width:810px;
+    padding:0;
+}
+
+.div2 { 
+    display:block;
+    margin:auto;
+    border-radius:3px;
+    padding:0;
+    text-align:center;
+    max-width: 900px;
+    font-family: sans-serif;
+    
+}
+
+.div3 {
+    display: block;
+    text-align:center;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:0px;   
+    max-width:800px;
+    color:black;
+    background-color:hsl(180, 22%, 90%);
+}
+
+.div3 p {
+    
+    margin: 0 0 0 0;
+}
+
+
+
+.div4 {
+    max-width:900px;
+    margin:auto;
+    border-style:solid;
+    border-width:0.5px;
+    border-color:lightgrey;
+    border-radius:2px;
+    padding:5px 0 0 0;
+}
+
+.div4 h3 {
+    padding-bottom:10px;
+    padding-top:0px;
+    margin:auto;
+}
+
+.div4 h4 {
+    padding:0px 0px 20px 10px;
+    margin:auto;
+    font-size:18px;
+}
+.div4 button{
+    float:right;
+    background-color:#007BFF;
+    color:white;
+    font-size:16px;
+    width:60px;
+    height:40px;
+    border-radius:12px;
+    margin-right:5px;
+    
+}
+
+.blueButton {
+    background-color:#007BFF;
+    color:white;
+    font-size:14px;
+    width:45px;
+    height:100%;
+    border-radius:5px;
+    padding:0;
+    box-sizing:border-box;
+    display:table-cell;
+    text-align:center;
+    
+}
+
+.greyRound {
+    background-color:#6E6867;
+    border-radius:3px;
+    padding:4px 2px;
+    margin:auto;
+    color:white;
+    font-size:20px;
+    display:table-cell;
+    height:100%;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.div5{
+    display:table;
+    max-width:850px;
+    height:40px;
+    margin:auto;
+    border: 1px solid lightgrey;
+    border-radius:5px;
+    /*display:inline-block; */
+    text-align:center;
+}
+
+.div5 span p{
+    margin:auto;
+    display:table;
+    color:white;
+    padding:0 5px 0 5px;
+    float:left;
+    background-color:inherit;
+    border-radius:inherit;
+    height:inherit;
+    text-align:center;
+   vertical-align:middle;
+}
+
+.addressInput {
+   height:100%;
+    padding:0px 5px;
+    width:380px;
+    margin:auto;
+    display:table-cell;
+    box-sizing:border-box;
+    border: 0.5px solid lightgrey;
+    font-size:16px;
+   text-align:center;
+}
+
+.div4 p{
+    margin-left:5px;
+}
+
+#mapid { height: 600px; max-width:800px; margin:auto}
+
+.popup{ width:200px; 
+    max-height: 500px;
+}
